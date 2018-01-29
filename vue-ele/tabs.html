@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1 input{background: #fff;}
+		#div1 input.active{background: blue; color:#fff;}
+		#div1 div{width: 200px; height:200px; background: #ccc; display: none;}
+		#con{width:200px; height:200px; background:yellow; position:absolute;}
+	</style>
+	<script type="text/javascript">
+		// var tbtn = null;
+		// var odiv = null
+		// window.onload = function(){
+
+		// 	var tdiv = document.getElementById('div1');
+		// 	 tbtn = tdiv.getElementsByTagName('input');
+		// 	 odiv = tdiv.getElementsByTagName('div');
+
+		// 	for(var i=0; i<tbtn.length; i++){
+  //                tbtn[i].index = i
+  //                tbtn[i].onclick = fnclick
+		// 	}
+		// }
+
+		// function fnclick(){
+		// 	for(var j=0; j<tbtn.length; j++){
+  //                        tbtn[j].className = '';
+  //                        odiv[j].style.display ="none"
+  //                	 }
+  //                	 this.className = "active";
+  //                	 odiv[this.index].style.display ="block"
+		//    }
+
+		// window.onload = function(){
+		// 	var switchtab1 = new Switchtab("div1")
+		// }
+
+		//  function Switchtab(id){
+  //           var _this = this
+		// 	var tdiv = document.getElementById(id);
+		// 	 this.tbtn = tdiv.getElementsByTagName('input');
+		// 	 this.odiv = tdiv.getElementsByTagName('div');
+
+		// 	for(var i=0; i<this.tbtn.length; i++){
+  //                this.tbtn[i].index = i
+  //                this.tbtn[i].onclick = function(){
+  //                	_this.fnclick(this);
+  //                }
+		// 	}
+		// }
+
+		// Switchtab.prototype.fnclick= function(obtn){
+		// 	for(var j=0; j<this.tbtn.length; j++){
+  //                        this.tbtn[j].className = '';
+  //                        this.odiv[j].style.display ="none"
+  //                	 }
+  //                	 obtn.className = "active";
+  //                	 this.odiv[obtn.index].style.display ="block"
+		//    }
+   
+
+     // var odiv = null
+     // var divx = null
+     // var divy = null
+
+     window.onload = function(){
+     	  new drop("con")
+     }
+     function drop(id){
+
+     	  var _this = this
+     	  this.odiv = document.getElementById(id);
+
+     	  this.odiv.onmousedown = function(ev){
+     	  	_this.fndown(ev)
+     	  }
+
+     }
+     
+     drop.prototype.fndown = function(ev){
+     	      var _this = this
+     	         var oevent = ev || event;
+                this.divx = oevent.clientX-this.odiv.offsetLeft;
+                this.divy = oevent.clientY-this.odiv.offsetTop;
+
+               document.onmousemove = function(ev){ 
+                 _this.fnmove(ev)
+               };
+               document.onmouseup = function(){
+               	 _this.fnup()
+               }
+     }
+
+     drop.prototype.fnup = function (){
+               	 document.onmousemove = null;
+               	 document.onmouseup = null;
+               }
+     drop.prototype.fnmove = function(ev){
+                 var oevent = ev || event;
+                 this.odiv.style.left = oevent.clientX-this.divx+"px";
+                 this.odiv.style.top = oevent.clientY-this.divy+"px";
+                
+               }
+    
+     // window.onload = function(){
+     // 	 var odiv = document.getElementById('div1')
+     // 	 var oinput = odiv.getElementsByTagName('input')
+     // 	 var sdiv = odiv.getElementsByTagName('div')
+
+     	 
+     // 	 	 for(var i= 0; i<oinput.length; i++){
+
+     // 	 	 	(function(i){
+     // 	 	 		   oinput[i].onclick = function(){
+    
+     //                    for(var j=0; j<oinput.length; j++){
+     //                          oinput[j].className = "";
+     //                          sdiv[j].style.display ="none"
+     //                    }
+                        
+     //                    this.className = "active";
+                       
+                        	
+     //                       sdiv[i].style.display = "block"
+                       
+                        
+                        
+     //               }
+     // 	 	 	})(i)
+                 
+     // 	 	  }
+     // 	     }
+	</script>
+</head>
+<body>
+
+	<div id="con"></div>
+   
+   <!-- <div id="div1">
+   	    <input type="button" class="active" name="" value="aaa">
+   	    <input type="button" name="" value="bbb">
+   	    <input type="button" name="" value="ccc">
+   	    <div style="display:block">aaaaaa</div>
+   	    <div>bbbbbb</div>
+   	    <div>cccccc</div>
+
+   </div>	 -->
+
+</body>
+</html>
